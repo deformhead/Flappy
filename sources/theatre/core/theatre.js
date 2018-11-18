@@ -2,19 +2,16 @@ import {Canvas} from 'core/canvas.js';
 import {Loop} from 'core/loop.js';
 import {preload} from 'core/preload.js';
 
-import {assets} from 'assets/index.js';
-
-import * as scenes from 'scenes/index.js';
-
 function Theatre(config) {
 
-    const {container, loading, opening, size} = config;
+    const {assets, container, scenes, size} = config;
 
     const expose = config.expose || false;
     const framerate = config.framerate || 60;
     const sharp = config.sharp || false;
 
-    let next = null;
+    let loading = null;
+    let restarting = false;
 
     function initialize() {
 
@@ -36,7 +33,7 @@ function Theatre(config) {
         this.delta.render = 0;
         this.delta.update = 0;
 
-        this.scene = this.scenes[loading];
+        this.scene = this.scenes.loading;
         this.scene.setup.call(this);
         this.scene.start.call(this);
 
@@ -47,14 +44,25 @@ function Theatre(config) {
             this.delta.update = timeframe;
             this.scene.update.call(this);
 
-            if (next !== null) {
+            if (restarting === true) {
+
+                this.scene.start.call(this);
+
+                restarting = false;
+
+                return;
+            }
+
+            if (loading !== null) {
 
                 this.scene.destroy.call(this);
-                this.scene = this.scenes[next];
+                this.scene = this.scenes[loading];
                 this.scene.setup.call(this);
                 this.scene.start.call(this);
 
-                next = null;
+                loading = null;
+
+                return;
             }
         });
 
@@ -81,30 +89,27 @@ function Theatre(config) {
                 this.assets[asset.type + 's'][asset.scope][asset.name] = asset.content;
             });
 
-            this.scene.destroy.call(this);
-
-            this.preloaded = true;
-
-            this.scene = this.scenes[opening];
-            this.scene.setup.call(this);
-            this.scene.start.call(this);
+            this.preloading = false;
         });
+
+        this.preloading = true;
     }
 
     function load(scene) {
 
-        next = scene;
+        loading = scene;
     }
 
     function restart() {
 
-        this.scene.start.call(this);
+        restarting = true;
     }
 
-    this.preloaded = false;
+    this.preloading = false;
     this.scenes = scenes;
     this.size = size;
-    this.version = '0.7.0';
+    this.state = {};
+    this.version = '0.10.0';
 
     this.load = load;
     this.restart = restart;
