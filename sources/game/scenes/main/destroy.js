@@ -1,6 +1,6 @@
 function destroy() {
 
-    console.log('destroy demo scene');
+    console.log('destroy main scene');
     console.log('-------');
 }
 

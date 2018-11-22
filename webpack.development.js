@@ -11,7 +11,7 @@ module.exports = merge(common, {
     'devServer': {
 
         'contentBase': path.resolve(__dirname, 'docs/'),
-        'open': true,
+        'open': false,
         'overlay': {
 
             'warnings': true,
