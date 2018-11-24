@@ -1,6 +1,6 @@
 import {World, System} from 'modules/world.js';
 
-import {animate, images} from 'systems/index.js';
+import {animate, images, loop, move} from 'systems/index.js';
 
 function setup() {
 
@@ -9,8 +9,10 @@ function setup() {
     this.world = new World();
     this.systems = {
 
-        'image': new System(['images', 'position'], images.bind(this)),
-        'animate': new System(['images'], animate.bind(this))
+        'images': new System(['box', 'images', 'position'], images.bind(this)),
+        'animate': new System(['images'], animate.bind(this)),
+        'move': new System(['move', 'box', 'position'], move.bind(this)),
+        'loop': new System(['loop', 'box', 'position'], loop.bind(this))
     };
 }
 

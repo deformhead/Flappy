@@ -1,6 +1,6 @@
 import {Entity} from 'modules/world.js';
 
-import {Images, Position} from 'components/index.js';
+import {Box, Images, Loop, Move, Position} from 'components/index.js';
 
 function start() {
 
@@ -8,12 +8,21 @@ function start() {
 
     this.world.add(new Entity('tree', [
 
+        new Box(32 * 10 * 2, 32 * 2),
         new Position(0, 7 * 32),
+        new Move(-64),
+        new Loop(),
         new Images([
 
             {
                 'image': this.assets.images.main['tree'],
                 'position': [0, 0],
+                'size': [32 * 10, 32 * 2],
+                'frames': [[0, 0]]
+            },
+            {
+                'image': this.assets.images.main['tree'],
+                'position': [32 * 10, 0],
                 'size': [32 * 10, 32 * 2],
                 'frames': [[0, 0]]
             }
@@ -22,12 +31,21 @@ function start() {
 
     this.world.add(new Entity('cloud', [
 
+        new Box(32 * 10 * 2, 32 * 3),
         new Position(0, 32),
+        new Move(-16),
+        new Loop(),
         new Images([
 
             {
                 'image': this.assets.images.main['cloud'],
                 'position': [0, 0],
+                'size': [32 * 10, 32 * 3],
+                'frames': [[0, 0]]
+            },
+            {
+                'image': this.assets.images.main['cloud'],
+                'position': [32 * 10, 0],
                 'size': [32 * 10, 32 * 3],
                 'frames': [[0, 0]]
             }
@@ -36,7 +54,9 @@ function start() {
 
     this.world.add(new Entity('pipe', [
 
-        new Position(32 * 5, 0),
+        new Box(32, 32 * 10),
+        new Position(32 * 10, 0),
+        new Move(-128),
         new Images([
 
             {
@@ -49,19 +69,19 @@ function start() {
                 'image': this.assets.images.main['pipe'],
                 'position': [0, 32],
                 'size': [32, 32],
-                'frames': [[2, 0]]
+                'frames': [[1, 0]]
             },
             {
                 'image': this.assets.images.main['pipe'],
-                'position': [0, 32 * 4],
+                'position': [0, 32 * 2],
                 'size': [32, 32],
-                'frames': [[0, 0]]
+                'frames': [[2, 0]]
             },
             {
                 'image': this.assets.images.main['pipe'],
                 'position': [0, 32 * 5],
                 'size': [32, 32],
-                'frames': [[1, 0]]
+                'frames': [[0, 0]]
             },
             {
                 'image': this.assets.images.main['pipe'],
@@ -86,6 +106,7 @@ function start() {
 
     this.world.add(new Entity('bird', [
 
+        new Box(32, 32),
         new Position(32, this.size.height / 2 - 32 / 2),
         new Images([
 
