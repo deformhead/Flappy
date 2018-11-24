@@ -1,6 +1,6 @@
 import {Entity} from 'modules/world.js';
 
-import {Box, Images, Loop, Move, Position} from 'components/index.js';
+import {Box, Gravity, Images, Loop, Move, Position} from 'components/index.js';
 
 function start() {
 
@@ -108,6 +108,7 @@ function start() {
 
         new Box(32, 32),
         new Position(32, this.size.height / 2 - 32 / 2),
+        new Gravity(),
         new Images([
 
             {
