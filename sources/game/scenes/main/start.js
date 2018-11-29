@@ -1,6 +1,11 @@
 import {Entity} from 'modules/world.js';
 
-import {Box, Gravity, Images, Loop, Move, Position} from 'components/index.js';
+import {Box} from 'components/main/box.js';
+import {Gravity} from 'components/main/gravity.js';
+import {Images} from 'components/main/images.js';
+import {Loop} from 'components/main/loop.js';
+import {Move} from 'components/main/move.js';
+import {Position} from 'components/main/position.js';
 
 function start() {
 

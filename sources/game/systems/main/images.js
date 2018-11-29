@@ -1,9 +1,9 @@
 function images(entity) {
 
-    const imageComponent = entity.get('images');
+    const imagesComponent = entity.get('images');
     const positionComponent = entity.get('position');
 
-    imageComponent.parts.forEach((image) => {
+    imagesComponent.parts.forEach((image) => {
 
         this.context.drawImage(
 

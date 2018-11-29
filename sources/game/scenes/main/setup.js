@@ -1,6 +1,10 @@
 import {World, System} from 'modules/world.js';
 
-import {animate, gravity, images, loop, move} from 'systems/index.js';
+import {animate} from 'systems/main/animate.js';
+import {gravity} from 'systems/main/gravity.js';
+import {images} from 'systems/main/images.js';
+import {loop} from 'systems/main/loop.js';
+import {move} from 'systems/main/move.js';
 
 function setup() {
 

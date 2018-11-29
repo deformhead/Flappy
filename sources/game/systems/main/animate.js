@@ -1,8 +1,8 @@
 function animate(entity) {
 
-    const imageComponent = entity.get('images');
+    const imagesComponent = entity.get('images');
 
-    imageComponent.parts.forEach((image) => {
+    imagesComponent.parts.forEach((image) => {
 
         if (image.frames.length > 1) {
 
