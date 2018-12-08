@@ -11,6 +11,11 @@ function move(entity) {
         positionComponent.x += moveComponent.speed / Math.abs(moveComponent.speed);
         moveComponent.elapsed -= 1000 / Math.abs(moveComponent.speed);
     }
+
+    if (positionComponent.x + boxComponent.width <= 0) {
+
+        this.world.remove(entity);
+    }
 }
 
 export {move};
